@@ -39,7 +39,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDto createUser(UserRequestDto userRequestDto) {
         Company company = getCompanyIfExists(userRequestDto.companyId());
-        User userToSave = userMapper.toEntity(userRequestDto, company);
+        User userToSave = userMapper.toEntity(userRequestDto);
+        userToSave.setCompany(company);
         User savedUser = userRepository.save(userToSave);
         return userMapper.toResponseDto(savedUser);
     }

@@ -9,8 +9,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapperImpl implements UserMapper {
+
     @Override
-    public User toEntity(UserRequestDto userRequestDto, Company company) {
+    public User toEntity(UserRequestDto userRequestDto) {
         User user = new User();
         user.setUsername(userRequestDto.username());
         user.setFirstName(userRequestDto.firstName());
@@ -19,7 +20,6 @@ public class UserMapperImpl implements UserMapper {
         user.setPassword(userRequestDto.password());
         user.setAge(userRequestDto.age());
         user.setSalary(userRequestDto.salary());
-        user.setCompany(company);
         return user;
     }
 

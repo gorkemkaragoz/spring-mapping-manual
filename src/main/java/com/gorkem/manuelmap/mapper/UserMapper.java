@@ -6,6 +6,6 @@ import com.gorkem.manuelmap.entity.Company;
 import com.gorkem.manuelmap.entity.User;
 
 public interface UserMapper {
-     User toEntity(UserRequestDto userRequestDto, Company company);
+     User toEntity(UserRequestDto userRequestDto);
      UserResponseDto toResponseDto(User user);
 }

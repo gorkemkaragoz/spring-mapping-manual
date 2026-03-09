@@ -167,7 +167,7 @@ public class UserServiceImplTest {
                 "gorkem@gmail.com", 22, 7500, "Turkcell");
 
         when(companyRepository.findById(1L)).thenReturn(Optional.of(company));
-        when(userMapper.toEntity(requestDto, company)).thenReturn(firstUser);
+        when(userMapper.toEntity(requestDto)).thenReturn(firstUser);
         when(userRepository.save(firstUser)).thenReturn(firstUser);
         when(userMapper.toResponseDto(firstUser)).thenReturn(expectedDto);
 
@@ -178,7 +178,7 @@ public class UserServiceImplTest {
         assertNotNull(result);
         assertEquals(expectedDto, result);
         verify(companyRepository, times(1)).findById(1L);
-        verify(userMapper, times(1)).toEntity(requestDto, company);
+        verify(userMapper, times(1)).toEntity(requestDto);
         verify(userRepository, times(1)).save(firstUser);
         verify(userMapper, times(1)).toResponseDto(firstUser);
     }
@@ -194,7 +194,7 @@ public class UserServiceImplTest {
                 1L, "gorkem", "Görkem", "Karagöz",
                 "gorkem@gmail.com", 22, 7500, null);
 
-        when(userMapper.toEntity(requestDto, null)).thenReturn(firstUser);
+        when(userMapper.toEntity(requestDto)).thenReturn(firstUser);
         when(userRepository.save(firstUser)).thenReturn(firstUser);
         when(userMapper.toResponseDto(firstUser)).thenReturn(expectedDto);
 
@@ -205,7 +205,7 @@ public class UserServiceImplTest {
         assertNotNull(result);
         assertEquals(expectedDto, result);
         verify(companyRepository, never()).findById(any());
-        verify(userMapper, times(1)).toEntity(requestDto, null);
+        verify(userMapper, times(1)).toEntity(requestDto);
         verify(userRepository, times(1)).save(firstUser);
         verify(userMapper, times(1)).toResponseDto(firstUser);
     }
